@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import "./app.css";
 import HorseMap from "./HorseMap.tsx";
 
 const root = document.getElementById("root");

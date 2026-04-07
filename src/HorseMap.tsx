@@ -173,33 +173,35 @@ export default function HorseMap() {
   const visCount = EVENTS.filter((e) => e.year <= year).length;
 
   return (
-    <div style={s.root}>
-      <style>{sliderCss}</style>
-
-      <header style={s.header}>
+    <div className="bg-bg-primary text-text-body flex h-screen flex-col overflow-hidden font-serif">
+      <header className="border-border-dark bg-bg-header flex shrink-0 items-center justify-between border-b px-4 py-[0.5625rem]">
         <div>
-          <div style={s.title}>The Spread of Horsemanship</div>
-          <div style={s.subtitle}>Archaeological &amp; historical record · ~3500 BCE – 1800 CE</div>
+          <div className="text-gold text-[0.9375rem] font-bold tracking-[0.07em] uppercase">
+            The Spread of Horsemanship
+          </div>
+          <div className="text-text-muted mt-[0.125rem] text-[0.625rem] tracking-[0.04em]">
+            Archaeological &amp; historical record · ~3500 BCE – 1800 CE
+          </div>
         </div>
-        <div style={s.headerRight}>
-          <label style={s.divineToggle}>
+        <div className="flex items-center gap-[1.125rem]">
+          <label className="text-text-toggle flex cursor-pointer items-center text-[0.6875rem]">
             <input
               type="checkbox"
               checked={showDivine}
               onChange={(e) => setShowDivine(e.target.checked)}
-              style={{ marginRight: 6, accentColor: "#9040c8" }}
+              className="accent-divine mr-1.5"
             />
             Divine associations
           </label>
-          <div style={s.legend}>
+          <div className="flex flex-wrap items-center gap-[0.5625rem]">
             {Object.entries(TYPE_COLORS).map(([t, c]) => (
-              <div key={t} style={s.legendItem}>
-                <div style={{ ...s.legendDot, background: c }} />
+              <div key={t} className="text-text-label flex items-center gap-1 text-[0.5625rem]">
+                <div className="size-2 shrink-0 rounded-full" style={{ background: c }} />
                 <span>{TYPE_LABELS[t]}</span>
               </div>
             ))}
             {showDivine && (
-              <div style={s.legendItem}>
+              <div className="text-text-label flex items-center gap-1 text-[0.5625rem]">
                 <svg width="10" height="10" viewBox="-6 -8 12 16">
                   <polygon points="0,-8 6,0 0,8 -6,0" fill="#9040c8" />
                 </svg>
@@ -210,46 +212,60 @@ export default function HorseMap() {
         </div>
       </header>
 
-      <div style={s.body}>
-        <div style={s.mapWrap}>
+      <div className="flex min-h-0 flex-1 overflow-hidden">
+        <div className="bg-bg-map relative flex-1 overflow-hidden">
           <svg
             ref={svgRef}
             viewBox={`0 0 ${W} ${H}`}
             preserveAspectRatio="xMidYMid meet"
-            style={s.svg}
+            className="block h-full w-full"
           />
         </div>
 
         {selected && (
-          <aside style={s.panel}>
-            <div style={s.panelHead}>
-              <div style={{ flex: 1 }}>
-                <div style={s.panelName}>{selected.label}</div>
-                <div style={s.panelSub}>{selected.sublabel}</div>
+          <aside className="border-border-dark bg-bg-panel w-[17rem] shrink-0 overflow-y-auto border-l p-[0.8125rem] text-[0.6875rem]">
+            <div className="mb-[0.625rem] flex items-start justify-between gap-2">
+              <div className="flex-1">
+                <div className="text-gold text-[0.8125rem] leading-snug font-bold">
+                  {selected.label}
+                </div>
+                <div className="text-text-muted mt-[0.125rem] text-[0.625rem] italic">
+                  {selected.sublabel}
+                </div>
                 {isHistoricalEvent(selected) && (
                   <div
-                    style={{
-                      ...s.panelYear,
-                      color: TYPE_COLORS[selected.type],
-                    }}
+                    className="mt-1 text-[0.6875rem] font-bold"
+                    style={{ color: TYPE_COLORS[selected.type] }}
                   >
                     {formatYear(selected.year)}
                     {selected.uncertainty ? ` ± ${selected.uncertainty} yrs` : ""}
                   </div>
                 )}
                 {!isHistoricalEvent(selected) && (
-                  <div style={{ ...s.panelYear, color: "#9040c8" }}>Divine / mythological</div>
+                  <div className="text-divine mt-1 text-[0.6875rem] font-bold">
+                    Divine / mythological
+                  </div>
                 )}
               </div>
-              <button onClick={() => setSelected(null)} style={s.closeBtn}>
+              <button
+                onClick={() => setSelected(null)}
+                className="text-text-muted shrink-0 cursor-pointer border-none bg-transparent p-0 text-xl leading-none"
+              >
                 ×
               </button>
             </div>
-            <p style={s.panelDesc}>{selected.description}</p>
-            <div style={s.refsWrap}>
-              <div style={s.refsHead}>References</div>
+            <p className="text-text-desc mb-3 text-[0.6875rem] leading-[1.7]">
+              {selected.description}
+            </p>
+            <div className="border-border-dark border-t pt-[0.625rem]">
+              <div className="text-text-dim mb-[0.4375rem] text-[0.53125rem] tracking-[0.1em] uppercase">
+                References
+              </div>
               {selected.refs.map((r, i) => (
-                <div key={i} style={s.refLine}>
+                <div
+                  key={i}
+                  className="text-text-dim mb-[0.375rem] text-[0.5625rem] leading-[1.65] italic"
+                >
                   {r}
                 </div>
               ))}
@@ -258,10 +274,12 @@ export default function HorseMap() {
         )}
       </div>
 
-      <footer style={s.footer}>
-        <div style={s.timeRow}>
-          <div style={s.yearBig}>{formatYear(year)}</div>
-          <div style={s.sliderWrap}>
+      <footer className="border-border-dark bg-bg-header shrink-0 border-t px-4 pt-[0.5625rem] pb-2">
+        <div className="flex items-center gap-3">
+          <div className="text-gold min-w-[6.25rem] shrink-0 text-right text-[0.9375rem] font-bold tracking-[0.02em]">
+            {formatYear(year)}
+          </div>
+          <div className="flex-1">
             <input
               type="range"
               min={MIN_YEAR}
@@ -272,172 +290,21 @@ export default function HorseMap() {
                 setYear(Number(e.target.value));
                 setSelected(null);
               }}
-              style={{ width: "100%" }}
+              className="w-full"
             />
-            <div style={s.ticks}>
+            <div className="text-text-tick mt-1 flex justify-between text-[0.53125rem]">
               {([-4000, -3000, -2000, -1000, 0, 500, 1000, 1500] as const).map((y) => (
-                <span key={y} style={s.tick}>
-                  {y < 0 ? `${-y} BCE` : y === 0 ? "1 CE" : `${y}`}
-                </span>
+                <span key={y}>{y < 0 ? `${-y} BCE` : y === 0 ? "1 CE" : `${y}`}</span>
               ))}
             </div>
           </div>
-          <div style={s.counter}>
+          <div className="text-text-muted min-w-16 shrink-0 text-center text-[0.6875rem] leading-[1.4]">
             {visCount} / {EVENTS.length}
             <br />
-            <span style={{ color: "#2a4050", fontSize: "9px" }}>events shown</span>
+            <span className="text-text-dim text-[0.5625rem]">events shown</span>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
-const sliderCss = `
-  input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; }
-  input[type=range]::-webkit-slider-runnable-track { background: #1a2d3d; height: 3px; border-radius: 2px; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #e8c97a; margin-top: -5.5px; cursor: pointer; border: 2px solid #0d1117; }
-  input[type=range]::-moz-range-track { background: #1a2d3d; height: 3px; border-radius: 2px; }
-  input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: #e8c97a; cursor: pointer; border: 2px solid #0d1117; }
-`;
-
-const s: Record<string, React.CSSProperties> = {
-  root: {
-    background: "#0d1117",
-    color: "#c8b898",
-    fontFamily: "Georgia, 'Times New Roman', serif",
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    overflow: "hidden",
-  },
-  header: {
-    padding: "9px 16px",
-    borderBottom: "1px solid #14202d",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexShrink: 0,
-    background: "#090d13",
-  },
-  title: {
-    color: "#e8c97a",
-    fontSize: "15px",
-    fontWeight: "bold",
-    letterSpacing: "0.07em",
-    textTransform: "uppercase",
-  },
-  subtitle: {
-    color: "#3a5060",
-    fontSize: "10px",
-    marginTop: "2px",
-    letterSpacing: "0.04em",
-  },
-  headerRight: {
-    display: "flex",
-    alignItems: "center",
-    gap: "18px",
-  },
-  divineToggle: {
-    display: "flex",
-    alignItems: "center",
-    fontSize: "11px",
-    color: "#7080a0",
-    cursor: "pointer",
-  },
-  legend: {
-    display: "flex",
-    gap: "9px",
-    alignItems: "center",
-    flexWrap: "wrap",
-  },
-  legendItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: "4px",
-    fontSize: "9px",
-    color: "#4a6070",
-  },
-  legendDot: { width: 8, height: 8, borderRadius: "50%", flexShrink: 0 },
-  body: { flex: 1, display: "flex", overflow: "hidden", minHeight: 0 },
-  mapWrap: { flex: 1, position: "relative", overflow: "hidden", background: "#071220" },
-  svg: { width: "100%", height: "100%", display: "block" },
-  panel: {
-    width: "272px",
-    flexShrink: 0,
-    background: "#0a0f18",
-    borderLeft: "1px solid #14202d",
-    padding: "13px",
-    overflowY: "auto",
-    fontSize: "11px",
-  },
-  panelHead: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginBottom: "10px",
-    gap: "8px",
-  },
-  panelName: { color: "#e8c97a", fontSize: "13px", fontWeight: "bold", lineHeight: "1.3" },
-  panelSub: { color: "#3a5060", fontSize: "10px", fontStyle: "italic", marginTop: "2px" },
-  panelYear: { fontSize: "11px", marginTop: "4px", fontWeight: "bold" },
-  closeBtn: {
-    background: "none",
-    border: "none",
-    color: "#3a5060",
-    fontSize: "20px",
-    cursor: "pointer",
-    padding: 0,
-    lineHeight: 1,
-    flexShrink: 0,
-  },
-  panelDesc: { color: "#7a9aaa", lineHeight: "1.7", margin: "0 0 12px 0", fontSize: "11px" },
-  refsWrap: { borderTop: "1px solid #14202d", paddingTop: "10px" },
-  refsHead: {
-    color: "#2a4050",
-    fontSize: "8.5px",
-    textTransform: "uppercase",
-    letterSpacing: "0.1em",
-    marginBottom: "7px",
-  },
-  refLine: {
-    color: "#2a4050",
-    fontSize: "9px",
-    lineHeight: "1.65",
-    marginBottom: "6px",
-    fontStyle: "italic",
-  },
-  footer: {
-    padding: "9px 16px 8px",
-    borderTop: "1px solid #14202d",
-    background: "#090d13",
-    flexShrink: 0,
-  },
-  timeRow: { display: "flex", alignItems: "center", gap: "12px" },
-  yearBig: {
-    color: "#e8c97a",
-    fontSize: "15px",
-    fontWeight: "bold",
-    minWidth: "100px",
-    textAlign: "right",
-    letterSpacing: "0.02em",
-    flexShrink: 0,
-  },
-  sliderWrap: { flex: 1 },
-  ticks: {
-    display: "flex",
-    justifyContent: "space-between",
-    fontSize: "8.5px",
-    color: "#1e3040",
-    marginTop: "4px",
-  },
-  tick: {},
-  counter: {
-    color: "#3a5060",
-    fontSize: "11px",
-    textAlign: "center",
-    minWidth: "64px",
-    lineHeight: "1.4",
-    flexShrink: 0,
-  },
-};

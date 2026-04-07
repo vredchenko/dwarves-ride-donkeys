@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0d1117;
+  --color-bg-header: #090d13;
+  --color-bg-map: #071220;
+  --color-bg-panel: #0a0f18;
+  --color-border-dark: #14202d;
+  --color-gold: #e8c97a;
+  --color-text-body: #c8b898;
+  --color-text-muted: #3a5060;
+  --color-text-dim: #2a4050;
+  --color-text-label: #4a6070;
+  --color-text-toggle: #7080a0;
+  --color-text-desc: #7a9aaa;
+  --color-text-tick: #1e3040;
+  --color-divine: #9040c8;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-bg-primary);
+  }
+}
+
+/* Range input slider — pseudo-elements cannot be styled with Tailwind classes */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #1a2d3d;
+  height: 0.1875rem;
+  border-radius: 0.125rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--color-gold);
+  margin-top: -0.344rem;
+  cursor: pointer;
+  border: 0.125rem solid var(--color-bg-primary);
+}
+
+input[type="range"]::-moz-range-track {
+  background: #1a2d3d;
+  height: 0.1875rem;
+  border-radius: 0.125rem;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--color-gold);
+  cursor: pointer;
+  border: 0.125rem solid var(--color-bg-primary);
+}
