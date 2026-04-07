@@ -1,11 +1,11 @@
 import type { HistoricalEvent, DivineEntry } from "./types.ts";
 
 export const TYPE_COLORS: Record<string, string> = {
-  domestication: "#e8c97a",
-  chariot: "#e8953a",
-  cavalry: "#e06858",
-  saddle: "#72c89a",
-  stirrup: "#60a8e0",
+  domestication: "#c8922a",
+  chariot: "#d4a24a",
+  cavalry: "#c4543a",
+  saddle: "#2a8a5a",
+  stirrup: "#3a72b8",
 };
 
 export const TYPE_LABELS: Record<string, string> = {
