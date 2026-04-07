@@ -31,6 +31,10 @@ Lefthook runs typecheck, lint, and format checks on pre-commit.
 - `src/types.ts` — TypeScript type definitions
 - `src/main.tsx` — React entry point
 
+## MCP
+
+Chrome DevTools MCP is configured in `.mcp.json` for inspecting the running app (DOM, console, network, screenshots). Launch Chrome with `--remote-debugging-port=9222` to connect.
+
 ## Conventions
 
 - Strict TypeScript (`strict: true`, `noUnusedLocals`, `noUnusedParameters`)

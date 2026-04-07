@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { SelectedEntry } from "./types.ts";
 import { EVENTS, DIVINE, TYPE_COLORS, TYPE_LABELS } from "./data.ts";
+import worldAtlas from "world-atlas/countries-110m.json";
 
 const W = 940;
 const H = 490;
@@ -22,23 +23,10 @@ type WorldTopology = Topology<{ countries: GeometryCollection }>;
 
 export default function HorseMap() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [worldData, setWorldData] = useState<WorldTopology | null>(null);
-  const [ready, setReady] = useState(false);
-  const [loadError, setLoadError] = useState<string | null>(null);
+  const worldData = worldAtlas as unknown as WorldTopology;
   const [year, setYear] = useState(MIN_YEAR);
   const [selected, setSelected] = useState<SelectedEntry | null>(null);
   const [showDivine, setShowDivine] = useState(false);
-
-  // Load world atlas
-  useEffect(() => {
-    fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
-      .then((r) => r.json())
-      .then((data: WorldTopology) => {
-        setWorldData(data);
-        setReady(true);
-      })
-      .catch((e: Error) => setLoadError(e.message));
-  }, []);
 
   const makeProjection = useCallback(
     () =>
@@ -51,7 +39,7 @@ export default function HorseMap() {
 
   // Draw base map — runs once on data load
   useEffect(() => {
-    if (!ready || !worldData || !svgRef.current) return;
+    if (!svgRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.select<SVGGElement>("#basemap").remove();
     const g = svg.insert<SVGGElement>("g", ":first-child").attr("id", "basemap");
@@ -87,11 +75,11 @@ export default function HorseMap() {
       .attr("fill", "none")
       .attr("stroke", "#243848")
       .attr("stroke-width", 1);
-  }, [ready, worldData, makeProjection]);
+  }, [worldData, makeProjection]);
 
   // Draw event and divine markers — runs on interaction state changes
   useEffect(() => {
-    if (!ready || !svgRef.current) return;
+    if (!svgRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.select<SVGGElement>("#eventlayer").remove();
     const g = svg.append<SVGGElement>("g").attr("id", "eventlayer");
@@ -180,7 +168,7 @@ export default function HorseMap() {
         }
       }
     }
-  }, [ready, year, selected, showDivine, makeProjection]);
+  }, [year, selected, showDivine, makeProjection]);
 
   const visCount = EVENTS.filter((e) => e.year <= year).length;
 
@@ -224,12 +212,6 @@ export default function HorseMap() {
 
       <div style={s.body}>
         <div style={s.mapWrap}>
-          {loadError && (
-            <div style={s.mapMsg}>
-              <span style={{ color: "#e06858" }}>Map error: {loadError}</span>
-            </div>
-          )}
-          {!ready && !loadError && <div style={s.mapMsg}>Loading geographic data…</div>}
           <svg
             ref={svgRef}
             viewBox={`0 0 ${W} ${H}`}
@@ -379,17 +361,6 @@ const s: Record<string, React.CSSProperties> = {
   legendDot: { width: 8, height: 8, borderRadius: "50%", flexShrink: 0 },
   body: { flex: 1, display: "flex", overflow: "hidden", minHeight: 0 },
   mapWrap: { flex: 1, position: "relative", overflow: "hidden", background: "#071220" },
-  mapMsg: {
-    position: "absolute",
-    inset: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#3a5060",
-    fontSize: "12px",
-    letterSpacing: "0.06em",
-    pointerEvents: "none",
-  },
   svg: { width: "100%", height: "100%", display: "block" },
   panel: {
     width: "272px",
