@@ -262,6 +262,8 @@ export const EVENTS: HistoricalEvent[] = [
 export const DIVINE: DivineEntry[] = [
   {
     id: "epona",
+    year: -50,
+    uncertainty: 50,
     label: "Epona",
     sublabel: "Celtic horse goddess",
     lat: 46.5,
@@ -275,6 +277,8 @@ export const DIVINE: DivineEntry[] = [
   },
   {
     id: "poseidon",
+    year: -1400,
+    uncertainty: 100,
     label: "Poseidon Hippios",
     sublabel: "Greek: horses before the sea",
     lat: 37.5,
@@ -285,6 +289,8 @@ export const DIVINE: DivineEntry[] = [
   },
   {
     id: "ashvins",
+    year: -2250,
+    uncertainty: 250,
     label: "The Ashvins",
     sublabel: "Vedic divine twin horsemen",
     lat: 25.5,
@@ -298,6 +304,8 @@ export const DIVINE: DivineEntry[] = [
   },
   {
     id: "sleipnir",
+    year: 900,
+    uncertainty: 200,
     label: "Sleipnir",
     sublabel: "Odin's eight-legged horse",
     lat: 60.5,
@@ -311,6 +319,8 @@ export const DIVINE: DivineEntry[] = [
   },
   {
     id: "hayagriva",
+    year: -1350,
+    uncertainty: 150,
     label: "Hayagriva",
     sublabel: "Horse-headed avatar of Vishnu",
     lat: 22.0,
@@ -323,6 +333,8 @@ export const DIVINE: DivineEntry[] = [
   },
   {
     id: "tianma",
+    year: -100,
+    uncertainty: 10,
     label: "Tianma 天馬",
     sublabel: "Heavenly Horses of Ferghana",
     lat: 40.5,
@@ -336,6 +348,8 @@ export const DIVINE: DivineEntry[] = [
   },
   {
     id: "dioscuri",
+    year: -2250,
+    uncertainty: 250,
     label: "Dioscuri",
     sublabel: "Castor & Pollux — PIE horse twins",
     lat: 41.9,

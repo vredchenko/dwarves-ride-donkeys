@@ -15,6 +15,8 @@ export interface HistoricalEvent {
 
 export interface DivineEntry {
   id: string;
+  year: number;
+  uncertainty: number;
   label: string;
   sublabel: string;
   lat: number;

@@ -139,7 +139,8 @@ export default function HorseMap() {
     }
 
     if (showDivine) {
-      for (const deity of DIVINE) {
+      const visibleDivine = DIVINE.filter((d) => d.year <= year);
+      for (const deity of visibleDivine) {
         const coords = proj([deity.lng, deity.lat]);
         if (!coords) continue;
         const [x, y] = coords;
@@ -246,7 +247,11 @@ export default function HorseMap() {
                   </p>
                 )}
                 {!isHistoricalEvent(selected) && (
-                  <p className="text-divine mt-1.5 text-sm font-semibold">Divine / mythological</p>
+                  <p className="text-divine mt-1.5 text-sm font-semibold">
+                    {formatYear(selected.year)}
+                    {selected.uncertainty ? ` ± ${selected.uncertainty} yrs` : ""} · Divine /
+                    mythological
+                  </p>
                 )}
               </div>
               <button
