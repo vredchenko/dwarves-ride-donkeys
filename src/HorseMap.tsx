@@ -125,16 +125,30 @@ export default function HorseMap() {
         .attr("opacity", 0.95);
 
       if (visible.length <= 10 || isSel) {
+        const weight = isSel ? "600" : "400";
+        const fill = isSel ? "#faf8f3" : "#d4cbb8";
+        // Stroke halo for contrast against both land and ocean
         eg.append("text")
           .attr("x", 10)
           .attr("y", 4)
           .text(evt.label)
-          .attr("fill", isSel ? "#faf8f3" : "#d4cbb8")
+          .attr("stroke", "#111d38")
+          .attr("stroke-width", 3.5)
+          .attr("stroke-linejoin", "round")
+          .attr("fill", "none")
           .attr("font-size", "10px")
           .attr("font-family", "'Source Serif 4', Georgia, serif")
-          .attr("font-weight", isSel ? "600" : "400")
-          .style("pointer-events", "none")
-          .style("text-shadow", "0 1px 3px rgba(0,0,0,0.6)");
+          .attr("font-weight", weight)
+          .style("pointer-events", "none");
+        eg.append("text")
+          .attr("x", 10)
+          .attr("y", 4)
+          .text(evt.label)
+          .attr("fill", fill)
+          .attr("font-size", "10px")
+          .attr("font-family", "'Source Serif 4', Georgia, serif")
+          .attr("font-weight", weight)
+          .style("pointer-events", "none");
       }
     }
 
@@ -164,12 +178,23 @@ export default function HorseMap() {
             .attr("x", 10)
             .attr("y", 4)
             .text(deity.label)
+            .attr("stroke", "#111d38")
+            .attr("stroke-width", 3.5)
+            .attr("stroke-linejoin", "round")
+            .attr("fill", "none")
+            .attr("font-size", "10px")
+            .attr("font-family", "'Source Serif 4', Georgia, serif")
+            .attr("font-weight", "600")
+            .style("pointer-events", "none");
+          dg.append("text")
+            .attr("x", 10)
+            .attr("y", 4)
+            .text(deity.label)
             .attr("fill", "#c080e0")
             .attr("font-size", "10px")
             .attr("font-family", "'Source Serif 4', Georgia, serif")
             .attr("font-weight", "600")
-            .style("pointer-events", "none")
-            .style("text-shadow", "0 1px 3px rgba(0,0,0,0.6)");
+            .style("pointer-events", "none");
         }
       }
     }
@@ -268,7 +293,14 @@ export default function HorseMap() {
               </h3>
               {selected.refs.map((r, i) => (
                 <p key={i} className="text-ink-muted mb-2 text-xs leading-relaxed italic">
-                  {r}
+                  <a
+                    href={`https://scholar.google.com/scholar?q=${encodeURIComponent(r)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-ink-muted decoration-border hover:text-ink hover:decoration-ink-muted underline transition-colors"
+                  >
+                    {r}
+                  </a>
                 </p>
               ))}
             </div>
