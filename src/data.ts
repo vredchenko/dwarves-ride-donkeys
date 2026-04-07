@@ -107,7 +107,7 @@ export const EVENTS: HistoricalEvent[] = [
     lng: 36.5,
     type: "cavalry",
     description:
-      "The Scythians developed a fully nomadic horse-based warrior culture across the Pontic steppe. Famous for composite-bow horse archery performed without stirrups — demonstrating that elite riders trained from childhood did not require them. Their animal-style art spread equestrian culture from the Carpathians to the Altai.",
+      "The Scythians developed a fully nomadic horse-based warrior culture across the Pontic steppe. Famous for composite-bow horse archery performed without stirrups — demonstrating that elite riders trained from childhood did not require them. Their animal-style art spread equestrian culture from the Carpathians to the Altai. Steppe horses went entirely unshod; the soft grassland terrain made hoof protection unnecessary, a contrast with later European cavalry that would require first hipposandals and then nailed iron shoes.",
     refs: [
       "Rolle, R. (1989). The World of the Scythians. Batsford.",
       "Cunliffe, B. (2019). The Scythians: Nomad Warriors of the Steppe. Oxford University Press.",
@@ -203,7 +203,7 @@ export const EVENTS: HistoricalEvent[] = [
     lng: 19.0,
     type: "stirrup",
     description:
-      "The Avars brought the rigid paired stirrup to central Europe in the late 6th century. Their success against Byzantine and Frankish forces prompted rapid adoption. This is the basis for Lynn White Jr.'s 'stirrup thesis' (1962) linking the technology to feudalism — most historians consider the argument overstated, but the technology transfer itself is well documented.",
+      "The Avars brought the rigid paired stirrup to central Europe in the late 6th century. Their success against Byzantine and Frankish forces prompted rapid adoption. This is the basis for Lynn White Jr.'s 'stirrup thesis' (1962) linking the technology to feudalism — most historians consider the argument overstated, but the technology transfer itself is well documented. The shift to heavy shock cavalry on hard European roads also accelerated the transition from Roman hipposandals (removable leather-and-metal hoof boots) to the nailed iron horseshoe, which appears in the archaeological record from roughly the 9th–10th century and became standard equipment for medieval warhorses.",
     refs: [
       "White, L. Jr. (1962). Medieval Technology and Social Change. Oxford University Press.",
       "Pohl, W. (1988). Die Awaren: Ein Steppenvolk im Mitteleuropa, 567–822 n. Chr. C.H. Beck.",
@@ -219,7 +219,7 @@ export const EVENTS: HistoricalEvent[] = [
     lng: 45.0,
     type: "cavalry",
     description:
-      "Arab cavalry became the primary vehicle of Islamic expansion from the 7th century CE. The Arabian horse became a symbol of military and religious power. Horsemanship vocabulary, breeding knowledge, and sophisticated hippiatric literature spread from Iberia to Central Asia — much of it later translated into Latin, influencing European veterinary practice.",
+      "Arab cavalry became the primary vehicle of Islamic expansion from the 7th century CE. The Arabian horse became a symbol of military and religious power. Horsemanship vocabulary, breeding knowledge, and sophisticated hippiatric and farriery literature — including detailed knowledge of hoof care and shoeing — spread from Iberia to Central Asia. Much of this was later translated into Latin, influencing European veterinary and blacksmithing practice.",
     refs: [
       "Kennedy, H. (2001). The Armies of the Caliphs: Military and Society in the Early Islamic State. Routledge.",
       "Hyland, A. (1994). The Medieval Warhorse. Sutton Publishing.",
